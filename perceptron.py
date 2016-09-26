@@ -14,7 +14,8 @@ data = [[T,T], [T,F], [F,T], [F,F]]
 def add_perceptron(data):
 	weights = list(random.randrange(-1, 1)) #how do you decide range?
 	products = []
-	output_expected = True
+	bias = 1
+	expected_output = True
 	new_weight = [] #a new list?
 
 	for i in data: # each epoch of training
@@ -22,7 +23,7 @@ def add_perceptron(data):
 
 
 	for item in products: #summation
-		summation = product[n] + product[n+1] #how to not count multiples
+		summation = product[n] + product[n+1] + bias #how to not count multiples
 
 	#threhold algorithm
 	if summation > 0:
@@ -31,16 +32,20 @@ def add_perceptron(data):
 		output = False
 
 	#check errors
-	error = output_expected - output
+	error = expected_output - output
 
 	weight_change = error * data[i]
 
 	new_weight.append(old_weight + weight_change)
+
+	return new_weight
+
 
 def or_perceptron(data):
 	weights = list(random.randrange(-1, 1)) #how do you decide range?
 	products = []
-	output_expected = True
+	output_expected = False
+	bias = 1
 	new_weight = [] #a new list?
 
 	for i in data: # each epoch of training
@@ -48,7 +53,7 @@ def or_perceptron(data):
 
 
 	for item in products: #summation
-		summation = product[n] + product[n+1] #how to not count multiples
+		summation = product[n] + product[n+1] + bias #how to not count multiples
 
 	#threhold algorithm
 	if summation > 0:
@@ -62,5 +67,7 @@ def or_perceptron(data):
 	weight_change = error * data[i]
 
 	new_weight.append(old_weight + weight_change)
+
+	return new_weight
 
 
