@@ -11,27 +11,32 @@ import random
 
 #do you average the outputs to get the final one?
 
+#use a while loop to go through until correct answer is reached?
+
 
 T = 1
 F = -1
 bias = 1
+expected_output = T
 
 #input and weights should be 2 lists
 
 data_input = [T, T]
 # data_input = [[T,T], [T,F], [F,T], [F,F]]
-weights = []
 
-for i in range(0,8):
-	weights.append(random.uniform(-1, 1)) #how do you decide range?, also separate lists for separate algorithms?
 
 summation = 0
 
 
-for i in data_input: #go through each item in the list and multiply it by a random weight
-	summation += i * weights[i] #does that make sense in python?
-
 def activate(summation):
+	weights = []
+
+	for i in range(0,8):
+		weights.append(random.uniform(-1, 1)) #how do you decide range?, also separate lists for separate algorithms?
+	
+	for i in data_input: #go through each item in the list and multiply it by a random weight
+		summation += i * weights[i] #does that make sense in python?
+
 	if summation > 0: # if summation is a positive number
 		return 1
 	elif summation < 0: # if summation is a negative number
@@ -41,14 +46,25 @@ def activate(summation):
 output = activate(summation)
 	
 
-print output
+if output == expected_output: 
+	print str(output) + " correct answer"
 
-#check to see if output is what was expected >> is this outside of function? 
-# if output = expected_output:
-# 	print "correct answer"
-# elif output != expected_output:
-# 	print "incorrect answer"
-# 	redo algorithm
+
+elif output != expected_output:
+	print str(output) + " going to try again"
+
+	while output != expected_output:
+		print str(output) + " going to try again"
+		output = activate(summation) #repeat function
+		
+		# print output 
+
+		if output == expected_output: #check to see if answer is correct
+			# ouput = expected_output
+			print str(output) + " correct answer"
+			break #why you no break?
+	
+
 
 
 
