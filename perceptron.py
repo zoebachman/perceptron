@@ -43,7 +43,7 @@ def activate(summation):
 		weights.append(random.uniform(-1, 1)) #how do you decide range?, also separate lists for separate algorithms?
 	
 	for i in data_input: #go through each item in the list and multiply it by a random weight
-		summation += i * weights[i] #does that make sense in python?
+		summation += (i * weights[i]) + 1 #does that make sense in python?
 
 	if summation > 0: # if summation is a positive number
 		return 1
