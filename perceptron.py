@@ -45,27 +45,29 @@ def activate(summation):
 
 output = activate(summation)
 	
+def learning(output):
+	if output == expected_output: 
+		print str(output) + " correct answer"
 
-if output == expected_output: 
-	print str(output) + " correct answer"
 
-
-elif output != expected_output:
-	print str(output) + " going to try again"
-
-	while output != expected_output:
+	elif output != expected_output:
 		print str(output) + " going to try again"
-		output = activate(summation) #repeat function
-		
-		# print output 
 
-		if output == expected_output: #check to see if answer is correct
-			# ouput = expected_output
-			print str(output) + " correct answer"
-			break #why you no break?
+		while output != expected_output:
+			print str(output) + " going to try again"
+			output = activate(summation) #repeat function
+			
+			# print output 
+
+			if output == expected_output: #check to see if answer is correct
+				# ouput = expected_output
+				print str(output) + " correct answer"
+				break #why you no break?
+#why returns didn't work?
 	
 
 
+perceptron = learning(output)
 
 
 
