@@ -11,7 +11,12 @@ import random
 
 #do you average the outputs to get the final one?
 
-#use a while loop to go through until correct answer is reached?
+#use a while loop to go through until correct answer is reached? 
+#> yes, but why is summation 0 and still producing 1 or -1? and when I try weights, super long list...
+#because it was 8, so fixed > NO, not if it goes into the while
+
+#do we need a bias if we're assigning either a 1 or -1?
+
 
 
 T = 1
@@ -34,7 +39,7 @@ def activate(summation):
 
 	
 
-	for i in range(0,8):
+	for i in range(0,2):
 		weights.append(random.uniform(-1, 1)) #how do you decide range?, also separate lists for separate algorithms?
 	
 	for i in data_input: #go through each item in the list and multiply it by a random weight
@@ -50,10 +55,10 @@ output = activate(summation)
 	
 def learning(output): #need to know what the weights are?
 	if output == expected_output: 
-		print str(weights) + str(output) + " correct answer"
+		print str(weights) + str(output) + " correct answer" #works
 
 
-	elif output != expected_output:
+	elif output != expected_output: #BROKEN
 		print str(weights) + str(output) + " going to try again"
 
 		while output != expected_output:
@@ -77,13 +82,13 @@ perceptron = learning(output)
 
 
 	#check errors
-	error = output_expected - output
+	# error = output_expected - output
 
-	weight_change = error * data[i]
+	# weight_change = error * data[i]
 
-	new_weight.append(old_weight + weight_change)
+	# new_weight.append(old_weight + weight_change)
 
-	return new_weight
+	# return new_weight
 
 
 
