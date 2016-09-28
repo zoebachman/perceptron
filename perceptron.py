@@ -16,37 +16,37 @@ T = 1
 F = -1
 bias = 1
 
-data = [[T,T], [T,F], [F,T], [F,F]]
+#input and weights should be 2 lists
+
+data_input = [[T,T], [T,F], [F,T], [F,F]]
 
 weights = list(random.randrange(-1, 1)) #how do you decide range?, also separate lists for separate algorithms?
 
+summation = 0
 
 #simple perceptron
 def perceptron():
-	data_input1 = T
-	data_input2 = F
-	weights = list(random.randrange(-1, 1))
 
-	product1 = data_input1 * weights[].random #select one randomly?
-	product2 = data_input2 * weights[].random
+	for i in data_input: #go through each item in the list and multiply it by a random weight
+		summation += i * weights[i] #does that make sense in python?
 
-	summation = product1 + product2 + bias
+	def activate(summation):
+		if summation > 0: # if summation is a positive number
+			return 1
+		elif summation < 0: # if summation is a negative number
+			return -1
 
-	if summation > 0: # if summation is a positive number
-		output = 1
-	elif summation < 0: # if summation is a negative number
-		output = -1
+
+output = activate(summation)
 
 	#check to see if output is what was expected >> is this outside of function? 
-	if output = expected_output:
-		print "correct answer"
-	elif output != expected_output:
-		print "incorrect answer"
-		redo algorithm
+if output = expected_output:
+	print "correct answer"
+elif output != expected_output:
+	print "incorrect answer"
+	redo algorithm
 
-		# for i in data_input: #go through each item in the list and multiply it by a random weight
 
-		# 	product[k] = i * weights[j]
 
 
 
