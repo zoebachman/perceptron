@@ -6,15 +6,22 @@ perceptron.py
 
 # add in weight bias when summation
 
+# where do we generate weights so that we can put them back into the algorithm? 
+
+T = 1
+F = -1
+bias = 1
 
 data = [[T,T], [T,F], [F,T], [F,F]]
 
+weights = list(random.randrange(-1, 1)) #how do you decide range?
 
 
-def add_perceptron(data):
-	weights = list(random.randrange(-1, 1)) #how do you decide range?
+
+def add_perceptron(data, weight): #processor 
+	# weights = list(random.randrange(-1, 1)) #how do you decide range?
 	products = []
-	bias = 1
+
 	expected_output = True
 	new_weight = [] #a new list?
 
@@ -25,7 +32,9 @@ def add_perceptron(data):
 	for item in products: #summation
 		summation = product[n] + product[n+1] + bias #how to not count multiples
 
-	#threhold algorithm
+
+
+	#threhold algorithm; calculate output
 	if summation > 0:
 		output = True
 	elif summation < 0:
@@ -41,11 +50,11 @@ def add_perceptron(data):
 	return new_weight
 
 
-def or_perceptron(data):
-	weights = list(random.randrange(-1, 1)) #how do you decide range?
+def or_perceptron(data, weight): # processor
+	# weights = list(random.randrange(-1, 1)) #how do you decide range?
 	products = []
 	output_expected = False
-	bias = 1
+
 	new_weight = [] #a new list?
 
 	for i in data: # each epoch of training
