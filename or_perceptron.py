@@ -71,6 +71,4 @@ def plotErrors(thing,label): #borrowed from Eve
     plt.show()
 
 
-
-# plotThing(211,errorsWithBias,'error with bias')
 plotErrors(errors_list, 'errors')
