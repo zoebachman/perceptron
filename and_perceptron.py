@@ -23,22 +23,25 @@ guess = []
 expected_output = [T, F, F, F]
 
 
-
-#seed random weights to start
-
-weights = 0.9 * np.random.random(3)+0.01
-
+weights_list = []
 error_list = []
 
 # new_weights = []
 learning_constant = .01
 # summation = 0 #got this from NoC
 
+first_time = True
 
 for i in range(1): #run the perceptron an x number of times
 	for j in range(len(data_input)): #for each index in data_input (so 4 times)
-			
-		print "old weights" + str(weights[0])
+		
+		#seed random weights to start
+		if first_time == True:
+			weights = 0.9 * np.random.random(3)+0.01
+			first_time = False
+
+
+		print weights[0]
 		#ask the perceptron to guess the outputs
 		summation = (data_input[j][0] * weights[0]) + (data_input[j][1] * weights[1]) + (bias * weights[2])
 
@@ -59,11 +62,13 @@ for i in range(1): #run the perceptron an x number of times
 		
 		error_list.append(error) #should be 4, and I want this in a list to refer back to 
 
-		
+		weights_list.append(weights[0])
+		weights_list.append(weights[1]) 
+		weights_list.append(weights[2])
 		
 
-	print error_list #4 overall errors
-		
+	# print error_list #4 overall errors
+	# print weights_list	
 
 	#reset the weights - but, before we try next thing in the list?
 	#shouldn't this happen with each iteration in range rather than each time through the input?
@@ -77,12 +82,15 @@ for i in range(1): #run the perceptron an x number of times
 		delta_bias_weight = error_list[i] * bias
 
 
-		#create new weights
-		weights[0] = weights[0] + delta_weight0 * learning_constant
-		weights[1] = weights[1] + delta_weight0 * learning_constant
-		weights[2] = weights[2] + delta_bias_weight * learning_constant
+		#create new weights to seed next round
+		weights[0] = weights_list[0] + delta_weight0 * learning_constant
+		weights[1] = weights_list[1] + delta_weight1 * learning_constant
+		weights[2] = weights_list[2] + delta_bias_weight * learning_constant
 
 		#how do I seed the new weights into the next round?
+
+		print "check to see if this changed" str(weights[0])
+
 
 
 	# for i in weights: #for each item in weights
