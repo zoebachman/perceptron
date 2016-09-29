@@ -32,7 +32,7 @@ learning_constant = .1
 errors_list = []
 
 
-for i in range(100): #run the perceptron an x number of times
+for i in range(10): #run the perceptron an x number of times
 	for j in range(len(data_input)): #for each index in data_input
 			
 		#ask the perceptron to guess the outputs
