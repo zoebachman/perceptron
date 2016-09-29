@@ -18,26 +18,27 @@ bias = 1
 
 
 data_input = [[T,T], [T,F], [F,T], [F,F]]
-guess = []
+
 expected_output = [T, F, F, F]
 
+weights = []
 
-#seed random weights to start
-weights = 0.9 * np.random.random(3)+0.01
+#seed random weights between -1 and 1 to start (floats)
+for i in range(3):
+	weights.append(random.uniform(-1,1))
 
 learning_constant = .1
 
 errors_list = []
 
 
-for i in range(10): #run the perceptron an x number of times
+for i in range(100): #run the perceptron an x number of times
 	for j in range(len(data_input)): #for each index in data_input
 			
 		#ask the perceptron to guess the outputs
 		summation = (data_input[j][0] * weights[0]) + (data_input[j][1] * weights[1]) + (bias * weights[2])
 
-		#threhold algorithm; calculate output > is this ok? only dealing with ints...will it ever get closer then?
-		# Just seems to go to 0....
+		#threhold algorithm; calculate output
 
 		if summation > 0: # if summation is a positive number
 			guess = T
@@ -46,11 +47,6 @@ for i in range(10): #run the perceptron an x number of times
 
 		output_value = expected_output[j]
 		error = output_value - guess
-
-		#if not doing threshold algorithm:
-		# output_value = expected_output[j]
-		# error = output_value - summation
-
 
 
 		#define change in weight
@@ -66,10 +62,9 @@ for i in range(10): #run the perceptron an x number of times
 
 		errors_list.append(error)
 
+print errors_list
 
-
-def plotErrors(num,thing,label): #borrowed from Eve
-    # plt.subplot(num)
+def plotErrors(thing,label): #borrowed from Eve
     plt.xlabel('Iteration')
     plt.ylabel(label)
     plt.plot(thing)
@@ -78,4 +73,4 @@ def plotErrors(num,thing,label): #borrowed from Eve
 
 
 # plotThing(211,errorsWithBias,'error with bias')
-plotErrors(1000,errors_list, 'errors')
+plotErrors(errors_list, 'errors')
