@@ -1,4 +1,5 @@
 import random
+import numpy as np
 
 # set up threshold algorithm
 #do you average the outputs to get the final one?
@@ -21,6 +22,12 @@ data_input = [[T,T], [T,F], [F,T], [F,F]]
 guess = []
 expected_output = [T, F, F, F]
 
+
+
+#seed random weights to start
+
+weights = 0.9 * np.random.random(3)+0.01
+
 error_list = []
 
 # new_weights = []
@@ -30,11 +37,8 @@ learning_constant = .01
 
 for i in range(1): #run the perceptron an x number of times
 	for j in range(len(data_input)): #for each index in data_input (so 4 times)
-		
-		weights = []
-		for i in range(3):
-			weights.append(random.uniform(-1, 1))
-
+			
+		print "old weights" + str(weights[0])
 		#ask the perceptron to guess the outputs
 		summation = (data_input[j][0] * weights[0]) + (data_input[j][1] * weights[1]) + (bias * weights[2])
 
@@ -55,6 +59,7 @@ for i in range(1): #run the perceptron an x number of times
 		
 		error_list.append(error) #should be 4, and I want this in a list to refer back to 
 
+		
 		
 
 	print error_list #4 overall errors
